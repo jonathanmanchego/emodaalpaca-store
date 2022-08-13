@@ -1,0 +1,19 @@
+app-whatsapp-float {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  width: 4rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.container-general {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+
+  app-navbar {
+    position: sticky;
+    top: 0;
+  }
+}

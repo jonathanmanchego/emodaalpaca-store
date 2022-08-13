@@ -1,0 +1,37 @@
+.title-page {
+  font-family: 'Merriweather', serif;
+  font-size: 2rem;
+  margin-right: 3rem;
+  display: flex;
+  align-items: flex-end;
+
+  span {
+    line-height: 2rem;
+  }
+}
+
+.navbar-nav {
+  a {
+    font-family: 'Merriweather', serif;
+    position: relative;
+
+    &::before {
+      content: ' ';
+      width: 0;
+      height: 1px;
+      background-color: #000;
+      left: 50%;
+      bottom: 0;
+      position: absolute;
+      transition: all ease-in-out 0.3s;
+    }
+
+    &:hover {
+      &::before {
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+
+}
