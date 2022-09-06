@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" style="background-color: #3f51b5;" fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="text-white">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let item of menu" [routerLink]="item.url" class="text-white p-2">
+        <i class="{{item.icon}} z-2"></i>
+        <span class="ms-2 d-none d-sm-inline text-white fs-6">
+          {{item.title}}
+        </span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Emoda Admin</span>
+      <span class="example-spacer"></span>
+      <span>
+        {{user.firstName}} {{user.lastName}}
+      </span>
+      <button mat-icon-button matTooltip="Cerrar sesión" (click)="signout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+    <!-- Content pages -->
+    <app-panel></app-panel>
+    <!-- Content pages -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

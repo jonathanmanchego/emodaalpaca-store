@@ -7,6 +7,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { GeneralComponent } from './components/general/general.component';
 import { WhatsappFloatComponent } from './components/buttons/whatsapp-float/whatsapp-float.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SectionCardsComponent } from './components/section-cards/section-cards.component';
+import { PanelProductsComponent } from './components/panel-products/panel-products.component';
+import { ShowProductComponent } from './components/show-product/show-product.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FooterComponent,
     GeneralComponent,
     WhatsappFloatComponent,
-    NavbarComponent
+    NavbarComponent,
+    SectionCardsComponent,
+    PanelProductsComponent,
+    ShowProductComponent
   ],
   imports: [
     CommonModule,

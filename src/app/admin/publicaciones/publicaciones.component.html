@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-6">
+    <h3 class="text-primary fw-bold">Mis Productos</h3>
+    <mat-card class="mb-1" *ngFor="let producto of productos">
+      <div class="card border-0 m-0 p-0">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="{{back}}/{{producto.imagenes[0].url}}" class="img-fluid" alt="...">
+          </div>
+          <div class="col-md-8 ps-3">
+            <div class="card-body p-0">
+              <h3 class="card-title fw-bold">{{producto.name}}</h3>
+              <p class="card-text">
+                {{producto.description}}
+              </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="col-md-2 py-auto">
+            <button class="btn btn-outline-success px-1" (click)="publicar(producto)"> Publicar
+              <i class="bi bi-arrow-right-circle-fill z-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div class="col-md-6">
+    <h4 class="text-success fw-bold">Mis Publicaciones</h4>
+    <mat-card class="mb-1" *ngFor="let publicacion of publicaciones">
+      <div class="card border-0 m-0 p-0">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="{{back}}/{{publicacion.producto.imagenes[0].url}}" class="img-fluid" alt="...">
+          </div>
+          <div class="col-md-8 ps-3">
+            <div class="card-body p-0">
+              <h3 class="card-title fw-bold">{{publicacion.producto.name}}</h3>
+              <p class="card-text">
+                {{publicacion.producto.description}}
+              </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-outline-danger px-1" (click)="eliminar(publicacion.id)">
+              Eliminar
+              <i class="bi bi-trash3-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

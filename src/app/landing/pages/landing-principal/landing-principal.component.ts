@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-landing-principal',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-principal.component.scss']
 })
 export class LandingPrincipalComponent implements OnInit {
-
-  constructor() { }
+  data1: any;
+  data2: any;
+  constructor(
+    private d:DataService
+  ) { 
+    this.data1 = this.d.data1;
+    this.data2 = this.d.data2;
+  }
 
   ngOnInit(): void {
   }

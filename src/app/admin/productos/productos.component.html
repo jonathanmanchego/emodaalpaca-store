@@ -1,0 +1,249 @@
+<div class="row mt-2">
+  <div class="col-md-4" [formGroup]="productForm">
+    <h4 class="mb-1">Formulario de registro</h4>
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel hideToggle [expanded]="isExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Datos Principales
+          </mat-panel-title>
+          <mat-panel-description>
+            Producto, Descripción
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="col-md-12 px-0">
+          <mat-form-field appearance="fill" class="w-100 p-0">
+            <mat-label>Producto:</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error>
+              Este campo es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width" appearance="fill" class="w-100">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput placeholder="Descripción" formControlName="description"></textarea>
+          </mat-form-field>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Más datos
+          </mat-panel-title>
+          <mat-panel-description>
+            Precio,tallas,colores,categoria
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="row">
+          <div class="col-md-6 px-1">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Colores:</mat-label>
+              <input matInput formControlName="colors" required>
+              <mat-error>
+                Este campo es requerido
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 px-1">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Tallas:</mat-label>
+              <input matInput formControlName="sizes" required>
+              <mat-error>
+                Este campo es requerido
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 px-1">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Precio:</mat-label>
+              <input matInput formControlName="amount" required>
+              <mat-error>
+                Este campo es requerido
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 px-1">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Categoría:</mat-label>
+              <mat-select formControlName="CATEGORY_PRODUCTS_id" name="cat">
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                  {{categoria.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                Este campo es requerido
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Fotos
+          </mat-panel-title>
+          <mat-panel-description>
+            Fotos del producto
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+          <div class="col-md-12 form-group mb-1 px-0" style="font-size: 90% !important;">
+            <div class="file-upload">
+              <div class="image-upload-wrap rounded">
+                <input class="file-upload-input" type='file' (change)='fileChangeEvent($event)' multiple
+                  accept="image/*">
+                <div class="text-center">
+                  <h3 class="text-primary p-3 m-0">Click o soltar archivos aquí <br>
+                    <!-- <small class="text-danger">(Informe, Pedido SIGA, Términos de referencia anexo 03,
+                      Anexos)</small> -->
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12" *ngIf="filesUploads.length>0">
+            <div class="row">
+              <div class="col-md-2 px-1" *ngFor="let file of filesUploads; let i=index">
+                <div class="card">
+                  <img src="{{back}}/{{file.url}}" class="card-img-top" alt="...">
+                  <div class="card-body p-0">
+                    <div class="d-grid gap-2 m0">
+                      <button class="btn btn-outline-danger p-0" type="button">
+                        <i class="bi bi-trash3-fill"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12" *ngIf="filesView.length>0">
+            <div class="row">
+              <div class="col-md-2 px-1" *ngFor="let file of filesView; let i=index">
+                <div class="card">
+                  <img src="{{file}}" class="card-img-top" alt="...">
+                  <div class="card-body p-0">
+                    <div class="d-grid gap-2 m0">
+                      <button class="btn btn-outline-danger p-0" type="button" (click)="eliminarImgPreUpload(i)">
+                        <i class="bi bi-trash3-fill"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+    <div class="col-md-12">
+      <div class="d-grid gap-2 mt-2">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button class="btn btn-outline-success" type="button" (click)="refreshForm()">Limpiar</button>
+          <button class="btn btn-outline-primary" type="button" (click)="guardar()">{{btn2}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <h4>Mis productos
+      <button class="btn btn-primary btn-sm p-0 px-1" (click)=" isList ? isList=false : isList=true">
+        <i class="bi bi-eye-fill"></i>
+        {{isList ? 'Cards' : 'Lista'}}
+      </button>
+    </h4>
+      <div class="row" *ngIf="!isList">
+        <div class="col-md-4 px-1 mb-1" *ngFor="let producto of productos; let i=index">
+          <mat-card class="h-100">
+            <div class="card border-0 px-1 h-100">
+              <div class="card-body p-0">
+                <h5 class="card-title text-center fw-bold">{{producto.name}}</h5>
+                <p class="card-text m-0 fw-bold text-primary">
+                  Descripción:
+                </p>
+                <p class="card-text mb-1">
+                  {{producto.description}}
+                </p>
+                <p class="card-text my-1">
+                  <span class="fw-bold  text-primary">Categoría:</span> {{producto.categoria.name}}
+                </p>
+                <p class="card-text my-1">
+                  <span class="fw-bold  text-primary">Colores:</span> {{producto.colors}}
+                </p>
+                <p class="card-text my-1">
+                  <span class="fw-bold  text-primary">Tallas:</span> {{producto.sizes}}
+                </p>
+                <p class="card-text">
+                  <span class="fw-bold  text-primary">Precio:</span> {{producto.precios[0].amount}}
+                </p>
+              </div>
+              <div class="card-footer border-0 bg-white py-1">
+                <div class="d-grid gap-2 mt-2">
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button class="btn btn-outline-primary btn-sm p-0 px-1" (click)="editarShow(producto)">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm p-0 px-1" (click)="eliminar(producto.id)">
+                      <i class="bi bi-trash3-fill"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    <mat-card *ngIf="isList">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Colores</th>
+            <th scope="col">Tallas</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{producto.name}}</td>
+            <td>{{producto.description}}</td>
+            <td>{{producto.colors}}</td>
+            <td>{{producto.sizes}}</td>
+            <td>{{producto.categoria.name}}</td>
+            <td>{{producto.precios[0].amount}}</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button class="btn btn-outline-primary btn-sm p-0 px-1" (click)="editarShow(producto)">
+                  <i class="bi bi-pencil-fill"></i>
+                </button>
+                <button class="btn btn-outline-danger btn-sm p-0 px-1" (click)="eliminar(producto.id)">
+                  <i class="bi bi-trash3-fill"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card>
+  </div>
+</div>
