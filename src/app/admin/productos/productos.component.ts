@@ -26,6 +26,9 @@ export class ProductosComponent implements OnInit {
   productos: any = null;
   categorias: any = null;
   productForm: FormGroup;
+
+  index_producto_edit:number = -1;
+
   constructor(
     private sanitizer: DomSanitizer,
     private fb: FormBuilder,
@@ -99,7 +102,7 @@ export class ProductosComponent implements OnInit {
     this.obtenerProductos();
   }
 
-  editarShow(product: any) {
+  editarShow(product: any,index:number) {
     console.log(product);
     this.productForm = this.fb.group({
       id: [product.id],
@@ -113,6 +116,7 @@ export class ProductosComponent implements OnInit {
     this.filesUploads = product.imagenes;
     this.btn2 = 'Actualizar';
     this.isExpanded = true;
+    this.index_producto_edit = index;
   }
 
   refreshForm() {
@@ -130,6 +134,7 @@ export class ProductosComponent implements OnInit {
     this.filesView = [];
     this.filesUploads = [];
     this.isExpanded = false;
+    this.index_producto_edit = -1;
   }
 
   async obtenerCategorias() {
@@ -165,6 +170,15 @@ export class ProductosComponent implements OnInit {
   eliminarImgPreUpload(i:any) {
     this.files.splice(i, 1);
     this.filesView.splice(i,1);
+  }
+
+  async eliminarImgUpload(image_id:number) {
+    this.spinner.show();
+    await this.query.deleteImg(image_id);
+    await this.obtenerProductos();
+    const product = this.productos[this.index_producto_edit];
+    this.editarShow(product,this.index_producto_edit);
+    this.spinner.hide();
   }
 
   blobFile = async ($event: any) => new Promise((resolve, reject):any => {

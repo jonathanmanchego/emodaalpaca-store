@@ -2,29 +2,32 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ApiService } from '../sesion/services/api.service';
+import { AuthService } from '../sesion/services/auth.service';
 import { LocalStoreService } from '../sesion/services/local-store.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QueryService {
-  private baseUrl: string;
   
+  private baseUrl: string;
   headers: any;
 
   constructor(
     private api: ApiService,
     private http: HttpClient,
-    private ls: LocalStoreService
+    private ls: LocalStoreService,
+    private auth: AuthService
   ) {
     this.baseUrl = environment.backendApi;
+    this.auth;
   }
 
   /***
    * CATEGORIAS
    */
   guardarCategoria(data:any) {
-    this.api.insertHead();
+    this.api.insertHeadFile();
     return this.http.post(`${this.baseUrl}/admin/categoria`, data,this.api.httpOptions).toPromise();
   }
   obtenerCategorias(params: any) {
@@ -32,8 +35,8 @@ export class QueryService {
     return this.http.get(`${this.baseUrl}/admin/categoria`,this.api.httpOptions).toPromise();
   }
   editarCategoria(id: any,data:any) {
-    this.api.insertHead();
-    return this.http.put(`${this.baseUrl}/admin/categoria/${id}`,data,this.api.httpOptions).toPromise();
+    this.api.insertHeadFile();
+    return this.http.post(`${this.baseUrl}/admin/categoria/update/${id}`,data,this.api.httpOptions).toPromise();
   }
   eliminarCategoria(id: any) {
     this.api.insertHead();
@@ -109,78 +112,13 @@ export class QueryService {
     this.api.insertHead();
     return this.http.delete(`${this.baseUrl}/admin/users/${id}`,this.api.httpOptions).toPromise();
   }
-  // 
-  // 
-  // 
 
-  // obtenerDatosAccesoExamen() {
-  //   const sessionData:any = this.ls.getItem('unamToken');
-  //   const params = {
-  //     iAccesoId: sessionData['user']
-  //   };
-  //   console.log(params);
-  //   this.api.insertHead();
-  //   this.api.httpOptions.params = params;
-  //   return this.http.get(`${this.baseUrl}/ceidPublic/examen/obtenerDatosUsuario`, this.api.httpOptions).toPromise();
-  // }
-
-  // obtenerExamenesPendientes() {
-  //   const sessionData:any = this.ls.getItem('unamToken');
-  //   const params = {
-  //     iPersId: sessionData['iPersId']
-  //   };
-  //   console.log(params);
-  //   this.api.insertHead();
-  //   this.api.httpOptions.params = params;
-  //   return this.http.get(`${this.baseUrl}/ceidPublic/examen/obtenerExamenesPendientes`, this.api.httpOptions).toPromise();
+  /***
+   * IMAGENES
+   */
+  deleteImg(id: any) {
+    this.api.insertHead();
+    return this.http.delete(`${this.baseUrl}/admin/producto-imagen/${id}`,this.api.httpOptions).toPromise();
+  }
   
-  // }
-  // obtenerExamenesPasados() {
-  //   const sessionData:any = this.ls.getItem('unamToken');
-  //   const params = {
-  //     iPersId: sessionData['iPersId']
-  //   };
-  //   console.log(params);
-  //   this.api.insertHead();
-  //   this.api.httpOptions.params = params;
-  //   return this.http.get(`${this.baseUrl}/ceidPublic/examen/obtenerExamenesPasados`, this.api.httpOptions).toPromise();
-  // }
-
-  // veryficarFechaHoraExamen(params: any) {
-  //   console.log(params);
-  //   this.api.insertHead();
-  //   this.api.httpOptions.params = params;
-  //   return this.http.get(`${this.baseUrl}/ceidPublic/examen/veryficarFechaHoraExamen`, this.api.httpOptions).toPromise();
-  // }
-  // obtenerBalotarioByExamen(params: any) {
-  //   console.log(params);
-  //   this.api.insertHead();
-  //   this.api.httpOptions.params = params;
-  //   return this.http.get(`${this.baseUrl}/ceidPublic/examen/obtenerBalotarioByExamen`, this.api.httpOptions).toPromise();
-  // }
-  // obtenerExamenById(params: any) {
-  //   console.log(params);
-  //   this.api.insertHead();
-  //   this.api.httpOptions.params = params;
-  //   return this.http.get(`${this.baseUrl}/ceidPublic/examen/obtenerExamenById`, this.api.httpOptions).toPromise();
-  // }
-  // obtenerExamenTerminado(params: any) {
-  //   console.log(params);
-  //   this.api.insertHead();
-  //   this.api.httpOptions.params = params;
-  //   return this.http.get(`${this.baseUrl}/ceidPublic/examen/obtenerExamenTerminado`, this.api.httpOptions).toPromise();
-  // }
-  // obtenerTests(params: any) {
-  //   return this.http.get(`${this.baseUrl}/ceidPublic/obtenerTests`).toPromise();
-  // }
-  // insertarActualizarExamenesPreguntas(data: any) {
-  //   console.log(data);
-  //   this.api.insertHead();
-  //   return this.http.post(`${this.baseUrl}/ceidPublic/examen/insertarActualizarExamenesPreguntas`, data,this.api.httpOptions).toPromise();
-  // }
-  // terminarExamen(data: any) {
-  //   console.log(data);
-  //   this.api.insertHead();
-  //   return this.http.post(`${this.baseUrl}/ceidPublic/examen/terminarExamen`, data,this.api.httpOptions).toPromise();
-  // }
 }

@@ -1,0 +1,15 @@
+<div class="row mt-4 mb-2 p-4">
+  <div class="col-md-3 hvr-grow" *ngFor="let item of data; let i=index">
+    <div class="card w-100 h-100 text-center border-0">
+      <a [routerLink]="'show/'+item.id">
+        <img src="{{back}}/{{item.imagenes[0].url}}" class="card-img-top" alt="...">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title mb-0 fw-bold">{{item.name}}</h5>
+        <p class="card-text">
+          {{item.colors}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

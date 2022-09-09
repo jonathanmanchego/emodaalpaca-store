@@ -23,6 +23,38 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12 form-group mb-1" *ngIf="showUploadImg">
+          <div class="file-upload w-100">
+            <div class="image-upload-wrap rounded">
+              <input class="file-upload-input" type='file' (change)='fileChangeEvent($event)' multiple accept="image/*">
+              <div class="text-center">
+                <h3 class="text-primary p-3 m-0">Click o soltar archivos aquí <br>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12" *ngIf="filesView.length>0">
+          <div class="row">
+            <div class="col-md-2 px-1" *ngFor="let file of filesView; let i=index">
+              <div class="card">
+                <img src="{{file}}" class="card-img-top" alt="...">
+                <div class="card-body p-0">
+                  <div class="d-grid gap-2 m0">
+                    <button class="btn btn-outline-danger p-0" type="button" (click)="eliminarImgPreUpload(i)">
+                      <i class="bi bi-trash3-fill"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="col-md-12 mt-2">
       <div class="d-grid gap-2">
         <div class="btn-group" role="group" aria-label="Basic example">

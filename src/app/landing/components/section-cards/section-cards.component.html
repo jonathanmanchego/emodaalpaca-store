@@ -1,5 +1,5 @@
 <div class="row mt-4 mb-2 p-4">
-  <div class="col-md-3" *ngFor="let item of data; let i=index">
+  <div class="col-md-3 hvr-grow" *ngFor="let item of data; let i=index">
     <div class="card w-100 text-center border-0">
       <a [routerLink]="'show-product/'+item.id">
         <img [src]="'assets/pub/'+item.imagen" class="card-img-top" alt="...">
@@ -9,7 +9,6 @@
         <p class="card-text">
           {{item.colores}}
         </p>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       </div>
     </div>
   </div>

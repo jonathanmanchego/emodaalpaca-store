@@ -31,6 +31,7 @@ export class AuthService {
   }
 
   checkAuth() {
+    console.log('autenticando');
     this.authenticated = this.store.getItem('token');
     if (this.authenticated) {
       this.api.verificarLoggued().subscribe(
@@ -58,7 +59,7 @@ export class AuthService {
         if (data['access_token']) {
           this.authenticated = true;
           this.store.setItem('token', data);
-          this.store.setItem('user', data);
+          // this.store.setItem('user', data);
           this.router.navigateByUrl('/admin');
         } else {
           this.authenticated = false;
