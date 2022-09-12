@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SectionCardsComponent } from './components/section-cards/section-cards.component';
 import { PanelProductsComponent } from './components/panel-products/panel-products.component';
 import { ShowProductComponent } from './components/show-product/show-product.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,9 +22,10 @@ import { ShowProductComponent } from './components/show-product/show-product.com
     NavbarComponent,
     SectionCardsComponent,
     PanelProductsComponent,
-    ShowProductComponent
+    ShowProductComponent,
   ],
   imports: [
+    SharedModule,
     CommonModule,
     LandingRoutingModule
   ]

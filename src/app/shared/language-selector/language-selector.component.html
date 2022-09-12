@@ -1,0 +1,16 @@
+<div class="nav-item">
+  <button class="tabBtn text-uppercase" [matMenuTriggerFor]="menu">
+    {{ currentLanguage }}
+    <i class="bi bi-chevron-down"></i>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      class="text-uppercase language"
+      *ngFor="let language of languages"
+      (click)="setLanguage(language)"
+    >
+      {{ language }}
+    </button>
+  </mat-menu>
+</div>
