@@ -2,5 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+  font-family: 'emoda-font';
+  src: url('./assets/fonts/emodafont.ttf');
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

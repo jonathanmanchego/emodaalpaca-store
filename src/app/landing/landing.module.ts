@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SectionCardsComponent } from './components/section-cards/section-cards.component';
 import { PanelProductsComponent } from './components/panel-products/panel-products.component';
 import { ShowProductComponent } from './components/show-product/show-product.component';
+import { SharedModule } from '../shared/shared.module';
 import { CategoryCardsComponent } from './components/category-cards/category-cards.component';
 import { ProductsComponent } from './components/products/products.component';
 import { CardProductComponent } from './components/card-product/card-product.component';
@@ -33,6 +34,7 @@ import { MaterialModule } from '../material.module';
     CardsProductsComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     LandingRoutingModule,
     MaterialModule
