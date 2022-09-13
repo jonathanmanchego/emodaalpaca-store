@@ -16,7 +16,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { CardProductComponent } from './components/card-product/card-product.component';
 import { CardsProductsComponent } from './components/cards-products/cards-products.component';
 import { MaterialModule } from '../material.module';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { MaterialModule } from '../material.module';
     SharedModule,
     CommonModule,
     LandingRoutingModule,
-    MaterialModule
+    MaterialModule,
+    NgxSpinnerModule
   ]
 })
 export class LandingModule { }

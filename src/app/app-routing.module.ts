@@ -29,7 +29,7 @@ const routes: Routes = [
       anchorScrolling: 'enabled',
     }),
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  //providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   exports: [RouterModule],
   providers: [{
     provide: LocationStrategy,

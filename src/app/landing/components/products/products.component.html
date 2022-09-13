@@ -1,17 +1,22 @@
 <div class="row">
   <div class="col-md-2 mb-4 mt-4 pt-4">
     <div class="list-group" id="list-tab">
-      <h3 class="list-group-item border-0 mb-0 ff-arial fw-bold">Categorías</h3>
+      <h3 class="list-group-item border-0 mb-0 ff-emoda fw-bold" translate>landingPage.category</h3>
       <button *ngFor="let categoria of categorias" (click)="changeCategory(categoria.id)"
-        class="list-group-item list-group-item-action border-0 hvr-grow">
+        class="list-group-item list-group-item-action border-0 hvr-grow ff-emoda">
         {{categoria.name}} 
-        <span *ngIf="categoria.categoria" class="text-primary">
+        <span *ngIf="categoria.categoria" class="text-primary ff-emoda">
           ({{categoria.categoria.name}})
         </span>
       </button>
     </div>
   </div>
-  <div class="col-md-10">
+  <div class="col-md-10 mt-4 pt-4">
+    <div class="col-12 text-center">
+      <h2 class="text-center m-0" *ngIf="categoria">{{categoria.name}}</h2>
+    </div>
     <app-cards-products *ngIf="products.length>0"  [data]="products"></app-cards-products>
   </div>
 </div>
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true" template = "<img src='/assets/images/spinner.gif' width='200px'>"><p style="color: white" > Loading... </p></ngx-spinner>

@@ -75,7 +75,7 @@ export class AuthService {
         }
       }
     );
-    return of({});
+    return of(0);
   }
 
   signout() {

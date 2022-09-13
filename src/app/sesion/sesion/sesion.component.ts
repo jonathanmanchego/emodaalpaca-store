@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class SesionComponent implements OnInit {
   
+  consultando:boolean = false;
   signinForm: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -25,13 +26,22 @@ export class SesionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signin() {
+  async signin() {
+    this.consultando = true;
     if (this.signinForm.invalid) {
       this.toastr.warning('Debe ingresar todos los datos', 'Error!');
+      this.consultando = false;
       return;
     }
     // console.log(this.signinForm.value);
     this.auth.signin(this.signinForm.value);
+    this.consultando = true;
+    setTimeout(
+       () => {
+        this.consultando = false;
+      },
+      5000
+    );
   }
 
 }

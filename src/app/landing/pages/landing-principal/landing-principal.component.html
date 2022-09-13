@@ -1,41 +1,40 @@
-<section class="images mt-3">
-  <img src="/assets/images/main2.jpg"  style="max-width: 100%;" alt="" />
+<section class="images mt-3 hvr-grow">
+  <img src="/assets/images/main2.jpg" style="max-width: 100%;" alt="" loading="lazy" />
 </section>
 <app-section-cards *ngIf="categorias.length==0" [data]="data1" class="mb-5"></app-section-cards>
 <app-category-cards *ngIf="categorias.length>0" [data]="categorias" class="mb-5"></app-category-cards>
-<div class="row p-5">
+<!-- <div class="row p-5">
   <div class="col-md-12 text-center p-5 pt-0 pb-0 mb-2">
     <h1 class="card-title mb-4 ff-arial">EMODA</h1>
     <h4 class="ff-arial">
       Entrepreneurship in the textile sector was born in 2003, Oscar and I created Milagros crafts, our first products went to the local market, starting our own identity, as a result of our experience in 2011 we created EMODAEIRL, name made up of the initials From our family, our first participation in Peru Moda in the same year gave us the vision to position our brand and our products nationally and internationally.
-    </h4>
-<section class="images">
+    </h4> -->
+<!-- <section class="images hvr-grow">
   <img src="/assets/images/wallpaper.jpeg" style="max-width: 100%" alt="" />
-</section>
+</section> -->
 <!-- <h1 class="mt-5 mb-5 pt-5 ff-cl ff-italic text-center">Favoritos</h1> -->
-<app-section-cards [data]="data1" class="mb-5"></app-section-cards>
+<!-- <app-section-cards [data]="data1" class="mb-5"></app-section-cards> -->
 <div class="row mt-5 mb-5">
   <div class="col-md-2"></div>
   <div class="col-md-8 text-center">
-    <h1 class="card-title mb-4 ff-arial" translate>landingPage.title</h1>
-    <p class="ff-arial" translate>landingPage.description</p>
+    <h1 class="card-title mb-4 ff-emoda fw-bold" translate>landingPage.title</h1>
+    <p class="ff-emoda" translate>landingPage.description</p>
   </div>
   <div class="col-md-4 text-center">
-    <h1 class="card-title mb-4 ff-arial">MISIÓN</h1>
-    <h4 class="ff-arial">
-      Somos una empresa, dedicada a la fabricación, producción y comercialización de prendas de vestir elaboradas con fibra de alpaca; dirigido al mercado nacional e internacional, teniendo el firme compromiso de aplicar y promover las buenas prácticas de comercio justo, con nuestros colaboradores, proveedores y clientes; Además, de incentivar el cuidado, protección y conservación del medio ambiente. Por ello, nuestra misión es reflejar el valor de la alpaca en nuestras prendas, vender Comodidad, confort y elegancia.
-    </h4>
+    <h1 class="card-title mb-4 ff-emoda fw-bold" translate>landingPage.mision</h1>
+    <h4 class="ff-emoda" translate>landingPage.misionDescription</h4>
   </div>
   <div class="col-md-4 text-center">
-    <h1 class="card-title mb-4 ff-arial">VISIÓN</h1>
-    <h4 class="ff-arial">
-      Nuestro objetivo es posicionar una marca representativa de la fibra de alpaca, permanecer en el mercado nacional y ampliar nuestras ventas internacionales. Continuando con nuestras buenas prácticas, ampliar nuestra base de produccióne innovar nuevas técnicas y procesos.
-    </h4>
+    <h1 class="card-title mb-4 ff-emoda fw-bold" translate>landingPage.vision</h1>
+    <h4 class="ff-emoda" translate>landingPage.visionDescription</h4>
   </div>
   <div class="col-md-4 text-center">
-    <h1 class="card-title mb-4 ff-arial">PRODUCCIÓN</h1>
-    <h4 class="ff-arial">
-      Contamos con dos talleres, brindado oportunidad laboral a personas vulnerables, en ellos participan 40 mujeres trabajadoras capacitadas en los diversos procesos de producción. Tenemos implementadas máquinas manuales tarjeteras e intarsieras, nuestra capacidad de producción en tarjeta es de 300 a 400 prendas por mes y en intarsia 40 prendas por mes. Contamos con la Certificación de Comercio Justo y realizamos exportaciones a Canadá, Alemania, España, Colombia y EE.UU
-    </h4>
+    <h1 class="card-title mb-4 ff-emoda fw-bold" translate>landingPage.production</h1>
+    <h4 class="ff-emoda" translate>landingPage.productionDescription</h4>
   </div>
 </div>
+
+<!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true" template = "<img src="/assets/images/SPINNER-PAGE.GIF">"><p style="color: white" > Loading... </p></ngx-spinner> -->
+
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true" template = "<img src='/assets/images/spinner.gif' width='200px'>"><p style="color: white" > Loading... </p></ngx-spinner>

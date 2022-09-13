@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { PublicServicesService } from 'src/app/services/public-services.service';
 import { ActivatedRoute, Params,Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-products',
@@ -14,9 +15,10 @@ export class ProductsComponent implements OnInit {
   data: any;
   publicaciones: any = [];
   products: any = [];
-  categoria: any;
+  categoria: any=null;
   categorias: any = [];
   constructor(
+    private spinner: NgxSpinnerService,
     private d: DataService,
     private activeRoute: ActivatedRoute,
     private publicService: PublicServicesService,
@@ -26,10 +28,12 @@ export class ProductsComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void>{
+    this.spinner.show();
     this.id = this.activeRoute.snapshot.params['category_id'];
     console.log('id=>',this.id);
     await this.getPublicaciones(this.id);
     await this.getCategories();
+    this.spinner.hide();
   }
 
   async getPublicaciones(category_id:number) {
@@ -48,9 +52,11 @@ export class ProductsComponent implements OnInit {
     this.categorias = res.data;
   }
 
-  async changeCategory(category_id:number) {
+  async changeCategory(category_id: number) {
+    this.spinner.show();
     this.route.navigateByUrl(`category/${category_id}/products`);
     await this.getPublicaciones(category_id);
+    this.spinner.hide();
   }
 
 }

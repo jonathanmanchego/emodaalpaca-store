@@ -2,10 +2,10 @@
   <div class="col-md-3 hvr-grow" *ngFor="let item of data; let i=index">
     <div class="card w-100 text-center border-0">
       <a [routerLink]="'category/'+item.id+'/products'">
-        <img src="{{back}}/{{item.urlImg}}" class="card-img-top" alt="...">
+        <img src="{{back}}/{{item.urlImg}}" class="card-img-top" alt="..." loading="lazy">
       </a>
       <div class="card-body">
-        <h3 class="card-title mb-0 fw-bold">{{item.name}}</h3>
+        <h3 class="card-title mb-0 fw-bold ff-emoda">{{item.name}}</h3>
       </div>
     </div>
   </div>

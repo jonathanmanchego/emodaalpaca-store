@@ -3,15 +3,21 @@
     <img src="assets/images/logo.jpeg" class="card-img-top" alt="...">
     <div class="card-body" [formGroup]="signinForm">
       <div class="form-floating mb-3">
-        <input type="email" class="form-control form-control-sm" id="floatingInput" placeholder="name@example.com" formControlName="email">
+        <input type="email" class="form-control form-control-sm" id="floatingInput" placeholder="name@example.com"
+          formControlName="email">
         <label for="floatingInput">Correo</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control form-control-sm" id="floatingPassword" placeholder="Password" formControlName="password">
+        <input type="password" class="form-control form-control-sm" id="floatingPassword" placeholder="Password"
+          formControlName="password">
         <label for="floatingPassword">Password</label>
       </div>
       <div class="d-grid gap-2 mt-3">
-        <button class="btn btn-info" type="button" (click)="signin()">Ingresar</button>
+        <div class="spinner-border text-primary m-auto" role="status" *ngIf="consultando">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <button class="btn btn-info" type="button" (click)="signin()" *ngIf="!consultando">
+          Ingresar</button>
       </div>
     </div>
   </div>

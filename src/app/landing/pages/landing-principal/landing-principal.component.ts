@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { PublicServicesService } from 'src/app/services/public-services.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-landing-principal',
@@ -13,14 +14,17 @@ export class LandingPrincipalComponent implements OnInit {
   categorias: any = [];
   constructor(
     private d: DataService,
-    private publicService:PublicServicesService
+    private publicService: PublicServicesService,
+    private spinner: NgxSpinnerService
   ) { 
     this.data1 = this.d.data1;
     this.data2 = this.d.data2;
   }
 
   async ngOnInit(): Promise<void> {
+    this.spinner.show();
     await this.getCategories();
+    this.spinner.hide();
   }
 
 
