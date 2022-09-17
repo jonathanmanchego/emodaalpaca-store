@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./categorias.component.scss']
 })
 export class CategoriasComponent implements OnInit {
-  
+
   back = environment.back;
   categorias: any = null;
   categoriaForm: FormGroup;
@@ -29,7 +29,7 @@ export class CategoriasComponent implements OnInit {
     private toastr: ToastrService,
     private query: QueryService,
     private spinner: NgxSpinnerService
-  ) { 
+  ) {
     this.categoriaForm = this.fb.group({
       id: [0],
       name: [null, [Validators.required]],
@@ -42,7 +42,7 @@ export class CategoriasComponent implements OnInit {
     await this.obtenerCategorias();
     this.spinner.hide();
   }
-  
+
   initForm(id:any,name:any,parentId:any) {
     this.categoriaForm = this.fb.group({
       id: [id],
@@ -57,16 +57,17 @@ export class CategoriasComponent implements OnInit {
   async guardar() {
     if (this.categoriaForm.invalid) {
       this.toastr.warning('Ingrese la categoría');
+      this.categoriaForm.markAsDirty();
       return;
     }
     this.spinner.show();
     if (this.categoriaForm.value.id == 0) {
-      if (this.files.length > 0) { 
+      if (this.files.length > 0) {
         console.log('Guardando!');
         console.log(this.categoriaForm.value);
         const data = JSON.stringify(this.categoriaForm.value);
         console.log('data',data);
-        
+
         const formData: FormData = new FormData();
         formData.append('data', data);
         for (let i = 0; i < this.files.length; i++) {
@@ -81,8 +82,8 @@ export class CategoriasComponent implements OnInit {
       }
     }
     if (this.categoriaForm.value.id > 0) {
-      console.log('Actualizando!');  
-      console.log(this.categoriaForm.value);      
+      console.log('Actualizando!');
+      console.log(this.categoriaForm.value);
       const data = JSON.stringify(this.categoriaForm.value);
       const formData: FormData = new FormData();
       formData.append('data', data);
@@ -115,9 +116,11 @@ export class CategoriasComponent implements OnInit {
   }
 
   async obtenerCategorias() {
+    this.spinner.show();
     const res: any = await this.query.obtenerCategorias({});;
     console.log(res);
     this.categorias = res.data;
+    this.spinner.hide();
   }
 
   refreshForm() {
@@ -126,11 +129,11 @@ export class CategoriasComponent implements OnInit {
     this.files = [];
     this.filesView = [];
   }
-  
+
   eliminarImgPreUpload(i: any) {
     this.files.splice(i, 1);
     this.filesView.splice(i, 1);
-    this.showUploadImg = true; 
+    this.showUploadImg = true;
   }
 
   fileChangeEvent(fileInput: any) {
@@ -144,7 +147,7 @@ export class CategoriasComponent implements OnInit {
     }
     console.log(this.files);
     console.log(this.filesView);
-    
+
   }
 
   blobFile = async ($event: any) => new Promise((resolve, reject):any => {

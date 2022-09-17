@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { QueryService } from 'src/app/services/query.service';
-import { environment } from 'src/environments/environment';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DomSanitizer} from '@angular/platform-browser';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
+import {QueryService} from 'src/app/services/query.service';
+import {environment} from 'src/environments/environment';
+import {Producto} from "../../shared/interfaces/Producto";
+import {Categoria} from "../../shared/interfaces/Categoria";
 
 @Component({
   selector: 'app-productos',
@@ -12,22 +14,22 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./productos.component.scss']
 })
 export class ProductosComponent implements OnInit {
-  
+
   isExpanded = false;
   isList = true;
   back = environment.back;
-  public filesToUpload: Array<File>=[];
+  public filesToUpload: Array<File> = [];
   public files: any = [];
   public filesView: any = [];
   public filesUploads: any = [];
   contadorFiles = 0;
   open = false;
   btn2 = 'Guardar';
-  productos: any = null;
-  categorias: any = null;
+  productos: Producto[] = [];
+  categorias: Categoria[] = [];
   productForm: FormGroup;
 
-  index_producto_edit:number = -1;
+  index_producto_edit: number = -1;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -35,7 +37,7 @@ export class ProductosComponent implements OnInit {
     private toastr: ToastrService,
     private query: QueryService,
     private spinner: NgxSpinnerService
-  ) { 
+  ) {
     this.productForm = this.fb.group({
       id: [null],
       name: [null, [Validators.required]],
@@ -51,18 +53,19 @@ export class ProductosComponent implements OnInit {
     this.obtenerProductos();
     this.obtenerCategorias();
   }
-  
+
   async guardar() {
     if (this.productForm.invalid) {
       this.toastr.warning('Faltan datos');
+      this.productForm.markAsDirty();
       this.files = [];
       return;
     }
     if (!this.productForm.value.id) {
       console.log('guardando!');
-      if (this.files.length>0) {
+      if (this.files.length > 0) {
         this.spinner.show();
-        const data:string = JSON.stringify(this.productForm.value);
+        const data: string = JSON.stringify(this.productForm.value);
         const formData: FormData = new FormData();
         formData.append('data', data);
         for (let i = 0; i < this.files.length; i++) {
@@ -79,7 +82,7 @@ export class ProductosComponent implements OnInit {
     if (this.productForm.value.id > 0) {
       console.log('Actualizando!');
       this.spinner.show();
-      const data:string = JSON.stringify(this.productForm.value);
+      const data: string = JSON.stringify(this.productForm.value);
       const formData: FormData = new FormData();
       formData.append('data', data);
       for (let i = 0; i < this.files.length; i++) {
@@ -95,14 +98,14 @@ export class ProductosComponent implements OnInit {
     this.refreshForm();
   }
 
-  async eliminar(id:any) {
+  async eliminar(id: any) {
     this.spinner.show();
     await this.query.eliminarProducto(id);
     this.spinner.hide();
     this.obtenerProductos();
   }
 
-  editarShow(product: any,index:number) {
+  editarShow(product: any, index: number) {
     console.log(product);
     this.productForm = this.fb.group({
       id: [product.id],
@@ -139,14 +142,15 @@ export class ProductosComponent implements OnInit {
 
   async obtenerCategorias() {
     this.spinner.show();
-    const res: any = await this.query.obtenerCategorias({});;
+    const res: any = await this.query.obtenerCategorias({});
     console.log(res);
     this.categorias = res.data;
     this.spinner.hide();
   }
+
   async obtenerProductos() {
     this.spinner.show();
-    const res: any = await this.query.obtenerProductos({});;
+    const res: any = await this.query.obtenerProductos({});
     console.log(res);
     this.productos = res.data;
     this.spinner.hide();
@@ -155,7 +159,7 @@ export class ProductosComponent implements OnInit {
 
   fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
-    for (let i = 0;i<this.filesToUpload.length ;i++){
+    for (let i = 0; i < this.filesToUpload.length; i++) {
       this.files.push(this.filesToUpload[i]);
       this.blobFile(this.filesToUpload[i]).then((res: any) => {
         this.filesView.push(res.base);
@@ -164,24 +168,24 @@ export class ProductosComponent implements OnInit {
     }
     console.log(this.files);
     console.log(this.filesView);
-    
+
   }
 
-  eliminarImgPreUpload(i:any) {
+  eliminarImgPreUpload(i: any) {
     this.files.splice(i, 1);
-    this.filesView.splice(i,1);
+    this.filesView.splice(i, 1);
   }
 
-  async eliminarImgUpload(image_id:number) {
+  async eliminarImgUpload(image_id: number) {
     this.spinner.show();
     await this.query.deleteImg(image_id);
     await this.obtenerProductos();
     const product = this.productos[this.index_producto_edit];
-    this.editarShow(product,this.index_producto_edit);
+    this.editarShow(product, this.index_producto_edit);
     this.spinner.hide();
   }
 
-  blobFile = async ($event: any) => new Promise((resolve, reject):any => {
+  blobFile = async ($event: any) => new Promise((resolve, reject): any => {
     try {
       const unsafeImg = window.URL.createObjectURL($event);
       const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);

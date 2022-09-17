@@ -2,19 +2,18 @@
   "landingPage": {
     "title": "EMODA",
     "description": "Our entrepreneurship in the textile sector was born in 2003, Oscar and I created Milagros crafts from which our first products went to the local market. As a result of our experience we started our own identity, in 2011 we created EMODA ALPACAS EIRL, a name made up of the initials of the names of our family, our first participation in Peru Moda in the same year gave us the vision to position our brand and our products nationally and internationally.",
-    "mision":"Mission",
-    "misionDescription":"We are a company dedicated to the manufacture, production and marketing of clothing made with alpaca fiber; directed to the national and international market, having the firm commitment to apply and promote good practices of fair trade, with our collaborators, suppliers and clients; In addition, to encourage the care, protection and conservation of the environment. For this reason, our mission is to reflect the value of alpaca in our garments, to sell convenience, comfort and elegance.",
-    "vision":"Vision",
-    "visionDescription":"Our objective is to position a representative brand of alpaca fiber, remain in the national market and expand our international sales. Continuing with our good practices, expanding our production base and innovating new techniques and processes.",
-    "production":"production",
-    "productionDescription":"We have two workshops, providing employment opportunities to vulnerable people, in which 40 working women trained in the various production processes participate. We have implemented manual card and intarsia machines, our card production capacity is 300 to 400 garments per month and intarsia 40 garments per month. We have the Fair Trade Certification and we export to Canada, Germany, Spain, Colombia and the USA",
-    "category":"Categories",
-    "contactenos":"Contact Us",
-    "celular":"Cell phone:",
-    "email":"E-mail:",
-    "descrip":"Description:",
-    "colors":"Colors:",
-    "sizes":"Sizes:"
+    "mision": "Mission",
+    "misionDescription": "We are a company dedicated to the manufacture, production and marketing of clothing made with alpaca fiber; directed to the national and international market, having the firm commitment to apply and promote good practices of fair trade, with our collaborators, suppliers and clients; In addition, to encourage the care, protection and conservation of the environment. For this reason, our mission is to reflect the value of alpaca in our garments, to sell convenience, comfort and elegance.",
+    "vision": "Vision",
+    "visionDescription": "Our objective is to position a representative brand of alpaca fiber, remain in the national market and expand our international sales. Continuing with our good practices, expanding our production base and innovating new techniques and processes.",
+    "production": "Production",
+    "productionDescription": "We have two workshops, providing employment opportunities to vulnerable people, in which 40 working women trained in the various production processes participate. We have implemented manual card and intarsia machines, our card production capacity is 300 to 400 garments per month and intarsia 40 garments per month. We have the Fair Trade Certification and we export to Canada, Germany, Spain, Colombia and the USA",
+    "category": "Categories",
+    "contactenos": "Contact Us",
+    "celular": "Cell phone:",
+    "email": "E-mail:",
+    "descrip": "Description:",
+    "colors": "Colors:",
+    "sizes": "Sizes:"
   }
-  
 }

@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
-import { AuthService } from 'src/app/sesion/services/auth.service';
-import { DataService } from 'src/app/services/data.service';
+import {Component, OnInit} from '@angular/core';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Observable} from 'rxjs';
+import {map, shareReplay} from 'rxjs/operators';
+import {AuthService} from 'src/app/sesion/services/auth.service';
+import {DataService} from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   user: any = {
     id: null,
     firstName: null,
@@ -23,21 +23,21 @@ export class NavComponent {
       icon: 'fs-4 bi bi-bag-check-fill',
       title: 'Publicaciones',
       url: 'publicaciones',
-      subMenu:null
+      subMenu: null
     },
     {
       type: 'menu',
       icon: 'fs-4 bi bi-box2-fill',
       title: 'Productos',
       url: 'productos',
-      subMenu:null
+      subMenu: null
     },
     {
       type: 'menu',
       icon: 'fs-4 bi bi-list-stars',
       title: 'Categorias',
       url: 'categorias',
-      subMenu:null
+      subMenu: null
     },
     {
       type: 'menu',
@@ -47,19 +47,16 @@ export class NavComponent {
     },
   ];
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
-
   constructor(
     private breakpointObserver: BreakpointObserver,
     private auth: AuthService,
     private data: DataService
   ) {
+  }
+
+  ngOnInit() {
     this.getUser();
-   }
+  }
 
   signout() {
     this.auth.signout();

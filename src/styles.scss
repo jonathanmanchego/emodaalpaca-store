@@ -4,9 +4,12 @@
 
 @font-face {
   font-family: 'emoda-font';
+  src: url('./assets/fonts/emodafont-regular.ttf');
+}
+@font-face {
+  font-family: 'emoda-font-italic';
   src: url('./assets/fonts/emodafont.ttf');
 }
-
 html,
 body {
   height: 100%;
@@ -15,4 +18,9 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.ff-emoda {
+  font-family: 'emoda-font', Roboto !important;
 }
